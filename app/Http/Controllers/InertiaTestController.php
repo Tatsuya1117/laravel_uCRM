@@ -26,6 +26,11 @@ class InertiaTestController extends Controller
   }
   /** inputタグで入力した値を受け取る変数 */
   public function store(Request $request) {
+    /** バリデーション */
+    $request -> validate([
+        "title" => ["required", "max:255", ],
+        "content" => ["required"],
+    ]);
     $inertia = new InertiaTest;
     $inertia -> title = $request->title;
     $inertia -> content = $request->content;
