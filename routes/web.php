@@ -26,6 +26,8 @@ Route::get('/inertia-test', function () {
 );
 /** inertiaのテストコントローラー */
 Route::get('/inertia/index', [InertiaTestController::class, 'index']) -> name("inertia.index");
+/** inertiaのテストコントローラー: formに送信 */
+Route::get('/inertia/create', [InertiaTestController::class, 'create']) -> name("inertia.create");
 /** inertiaのテストコントローラー: DB保存テスト */
 Route::post('/inertia', [InertiaTestController::class, 'store']) -> name("inertia.store");
 
