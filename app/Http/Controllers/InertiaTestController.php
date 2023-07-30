@@ -35,6 +35,8 @@ class InertiaTestController extends Controller
     $inertia -> title = $request->title;
     $inertia -> content = $request->content;
     $inertia -> save();
-    return to_route('inertia.index');
+    return to_route('inertia.index')->with([
+        "message" => "登録しました。",
+    ]);
   }
 }

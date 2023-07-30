@@ -39,6 +39,10 @@ class HandleInertiaRequests extends Middleware
                     'location' => $request->url(),
                 ]);
             },
+            /** 部分リロードでフラッシュメッセージを渡す */
+            "flash" => [
+                "message" => fn() => $request->session()->get("message")
+            ]
         ]);
     }
 }
