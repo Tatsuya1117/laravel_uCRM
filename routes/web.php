@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use App\Http\Controllers\InertiaTestController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,15 +15,30 @@ use Inertia\Inertia;
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
+| webルートを登録する
+|
 */
 
+/** aタグとLinkのテスト */ 
+Route::get('/inertia-test', function () {
+    return Inertia::render('InertiaTest');
+  }
+);
+/** inertiaのテストコントローラー */
+Route::get('/inertia/index', [InertiaTestController::class, 'index']) -> name("inertia.index");
+/** inertiaのテストコントローラー: DB保存テスト */
+Route::post('/inertia', [InertiaTestController::class, 'store']) -> name("inertia.store");
+
+/** inertiaのテストコントローラー: show */
+Route::get('/inertia/show/{id}', [InertiaTestController::class, 'show']) -> name("inertia.show");
+
 Route::get('/', function () {
-    return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]);
+  return Inertia::render('Welcome', [
+    'canLogin' => Route::has('login'),
+    'canRegister' => Route::has('register'),
+    'laravelVersion' => Application::VERSION,
+    'phpVersion' => PHP_VERSION,
+  ]);
 });
 
 Route::get('/dashboard', function () {

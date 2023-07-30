@@ -71,3 +71,35 @@ php artisan cache:clear
 
 <!-- 設定を変えた時など -->
 php artisan config:clear
+
+## Document root 
+
+uCRM/resources/js
+
+## LaravelBladeとInertiaの違い
+
+### サーバーサイド
+
+```Laravel Blade
+view("viewファイル名", compact(変数名))
+```
+
+```inertia
+Inertia::render("viewコンポーネント名", [key, value])
+```
+
+となる。
+
+### クライアントサイド
+
+```Laravel Blade
+// ページ内の情報を再読み込みするHTML
+<a href="">リンク</a>
+```
+
+```Inertia
+// 部分的に読み込むJSON
+// 読み込む量が少ない = 描画速度が速い
+// SPA向きの書き方
+<Link href="">
+```
