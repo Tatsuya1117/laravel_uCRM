@@ -11,7 +11,9 @@ class InertiaTestController extends Controller
   /** コンポーネントの指定 */
   /** inertia/indexを表示する */
   public function index() {
-    return Inertia::render("Inertia/Index");
+    return Inertia::render("Inertia/Index", [
+        "blogs" => InertiaTest::all()
+    ]);
   }
   /** inertia/createを表示する */
   public function create() {
